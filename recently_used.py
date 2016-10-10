@@ -12,8 +12,9 @@ import argparse
 import os.path
 import sys
 
-from gi.repository import Gtk
+from gi.repository import Gio
 from gi.repository import GLib
+from gi.repository import Gtk
 
 class UserError(Exception):
     def __init__(self, message):
@@ -37,12 +38,14 @@ def warn(msg):
 def main(args):
     # Add files to list
     recent_mgr = Gtk.RecentManager.get_default()
-    for file in args.files:
-        if not os.path.exists(file):
-            warn("%r doesn't exist" % file)
-        uri = GLib.filename_to_uri(os.path.abspath(file))
-        recent_mgr.add_item(uri)
-        print("Adding %r" % uri)
+    for path in args.files:
+        file = Gio.File.new_for_path(path)
+        if not file.query_exists():
+            warn("%r doesn't exist" % path)
+        else:
+            uri = file.get_uri()
+            recent_mgr.add_item(uri)
+            print("Adding %r" % uri)
 
     # RecentManager.add_item is async, so we need to start the main loop for
     # those calls to actually do something. We want to quit as soon as they are
