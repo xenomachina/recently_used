@@ -14,6 +14,10 @@ Overview:
     grab a screenshot and then open it in GIMP or Inkscape. 
 """
 
+__copyright__ = "Copyright ©2016 Laurence Gonsalves"
+__license__   = "GPLv2"
+__email__     = "laurence@xenomachina.com"
+
 import argparse
 import os.path
 import sys
