@@ -4,8 +4,14 @@
 """
 Add files to the recently-used list
 
-Add files to the recently used list that appears in file dialogs and file
-managers (like Nautilus).
+Overview:
+
+    File dialogs and file managers (like Nautilus) have a "Recently Used" file
+    list. Files are not automatically added to this list when they are created.
+    Sometimes it would be nice to have scripts that generate files also add
+    them to this list. For example, a script that takes screenshots can also
+    add the resulting file(s) to the recently used list, making it easier to
+    grab a screenshot and then open it in GIMP or Inkscape. 
 """
 
 import argparse
@@ -25,8 +31,8 @@ def create_argparser():
     description, epilog = __doc__.strip().split('\n', 1)
     parser = argparse.ArgumentParser(description=description, epilog=epilog,
             formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('files',
-        help="Files to add to recently used list",
+    parser.add_argument('file',
+        help="File to add to recently used list",
         nargs='*')
     return parser
 
@@ -38,7 +44,7 @@ def warn(msg):
 def main(args):
     # Add files to list
     recent_mgr = Gtk.RecentManager.get_default()
-    for path in args.files:
+    for path in args.file:
         file = Gio.File.new_for_path(path)
         if not file.query_exists():
             warn("%r doesn't exist" % path)
