@@ -14,15 +14,17 @@ Add files to the recently-used list
 
 ## Usage:
 
-    recently_used.py [-h] [file [file ...]]
+    recently_used.py [-h] [-A APPNAME] [file [file ...]]
 
 
 ## Positional Arguments:
 
-    file        File to add to recently used list
+    file                  File to add to recently used list
 
 ## Optional Arguments:
 
-    -h, --help  show this help message and exit
+    -h, --help            show this help message and exit
+    -A APPNAME, --appname APPNAME
+                          Application name (defaults to name of this script)
 
 

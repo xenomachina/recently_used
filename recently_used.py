@@ -35,6 +35,8 @@ def create_argparser():
     description, epilog = __doc__.strip().split('\n', 1)
     parser = argparse.ArgumentParser(description=description, epilog=epilog,
             formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('-A', '--appname',
+        help="Application name (defaults to name of this script)")
     parser.add_argument('file',
         help="File to add to recently used list",
         nargs='*')
@@ -46,6 +48,9 @@ def warn(msg):
 
 
 def main(args):
+    if args.appname:
+        GLib.set_application_name(args.appname)
+
     # Add files to list
     recent_mgr = Gtk.RecentManager.get_default()
     for path in args.file:
