@@ -3,6 +3,11 @@
 Add files to the recently-used list
 
 
+## options:
+  -h, --help            show this help message and exit
+  -A APPNAME, --appname APPNAME
+                        Application name (defaults to name of this script)
+
 ## Overview:
 
 File dialogs and file managers (like Nautilus) have a "Recently Used" file
@@ -14,17 +19,11 @@ grab a screenshot and then open it in GIMP or Inkscape.
 
 ## Usage:
 
-    recently_used.py [-h] [-A APPNAME] [file [file ...]]
+    recently_used.py [-h] [-A APPNAME] [file ...]
 
 
 ## Positional Arguments:
 
     file                  File to add to recently used list
-
-## Optional Arguments:
-
-    -h, --help            show this help message and exit
-    -A APPNAME, --appname APPNAME
-                          Application name (defaults to name of this script)
 
 
